@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<style>
+    /* Basic reset for body and html */
+html, body {
+    margin: 0;
+    padding: 0;
+    overscroll-behavior: none;
+    overflow: hidden;
+    background-color: #f0f0f5;
+}
+
+/* Styling for external link container */
+.external-links {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.external-links a {
+    text-decoration: none;
+    color: #333;
+}
+
+.external-links a:hover {
+    color: #007acc;
+}
+
+.external-links a img.icon {
+    height: 16px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+</style>
+<body>
+    <canvas></canvas>
+
+    <div class="external-links">
+        <a href="" target="_blank">Learn More
+            <img class="icon" src="https://ksenia-k.com/img/icons/link.svg" alt="icon">
+        </a>
+    </div>
+    <script>
+        const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
+
+// Initialize mouse activity tracker
+let hasMoved = false;
+
+const cursor = {
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2
+};
+
+const config = {
+    trailLength: 50,
+    lineThickness: 0.2,
+    mouseVelocity: 0.7,
+    elasticity: 0.35,
+    damping: 0.6
+};
+
+const trailPoints = new Array(config.trailLength).fill().map(() => ({
+    x: cursor.x,
+    y: cursor.y,
+    dx: 0,
+    dy: 0
+}));
+
+// Track mouse events
+window.addEventListener("mousemove", (e) => {
+    hasMoved = true;
+    moveCursor(e.pageX, e.pageY);
+});
+
+window.addEventListener("touchmove", (e) => {
+    hasMoved = true;
+    moveCursor(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+});
+
+function moveCursor(x, y) {
+    cursor.x = x;
+    cursor.y = y;
+}
+
+adjustCanvas();
+animate(0);
+window.addEventListener("resize", adjustCanvas);
+
+function animate(time) {
+    if (!hasMoved) {
+        cursor.x = (0.5 + 0.25 * Math.cos(0.002 * time)) * window.innerWidth;
+        cursor.y = (0.5 + 0.25 * Math.sin(0.002 * time)) * window.innerHeight;
+    }
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    trailPoints.forEach((point, idx) => {
+        const previousPoint = idx === 0 ? cursor : trailPoints[idx - 1];
+        const springiness = idx === 0 ? config.elasticity * 0.5 : config.elasticity;
+
+        point.dx += (previousPoint.x - point.x) * springiness;
+        point.dy += (previousPoint.y - point.y) * springiness;
+        point.dx *= config.damping;
+        point.dy *= config.damping;
+        point.x += point.dx;
+        point.y += point.dy;
+    });
+
+    ctx.beginPath();
+    ctx.moveTo(trailPoints[0].x, trailPoints[0].y);
+
+    for (let i = 1; i < trailPoints.length - 1; i++) {
+        const midpointX = (trailPoints[i].x + trailPoints[i + 1].x) / 2;
+        const midpointY = (trailPoints[i].y + trailPoints[i + 1].y) / 2;
+        ctx.quadraticCurveTo(trailPoints[i].x, trailPoints[i].y, midpointX, midpointY);
+        ctx.lineWidth = config.lineThickness * (config.trailLength - i);
+        ctx.strokeStyle = `rgba(50, 150, 250, ${1 - i / config.trailLength})`;
+        ctx.stroke();
+    }
+
+    ctx.lineTo(trailPoints[trailPoints.length - 1].x, trailPoints[trailPoints.length - 1].y);
+    ctx.stroke();
+    
+    requestAnimationFrame(animate);
+}
+
+function adjustCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+
+    </script>
+</body>
+</html>

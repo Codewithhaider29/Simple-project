@@ -1,0 +1,15 @@
+:root {
+  --background-color: #080808;
+  --header-background: #8844dd;
+  --background-menu: #47126b;
+
+  --white: #ffffff;
+  --black: #000000;
+  --yellow: #fff858;
+
+  --border-radius: 1rem;
+  --font: 'Roboto', sans-serif;
+
+  --mobile-game-title: 1rem;
+  --desktop-game-title: 2rem;
+}

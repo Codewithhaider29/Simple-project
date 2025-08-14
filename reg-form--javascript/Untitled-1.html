@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <title>Document</title>
+    </head>
+    <style>
+        h1
+        {
+            text-align: center;
+        }
+        .reg-text
+        {
+            text-align: center;
+            margin: 50px auto;
+        }
+        table ,tr ,th
+        {
+            text-align: center;
+            margin: 50px auto;
+            width: 444px;
+            height: 41px;
+            border: 1px solid black;
+            font-size: 15px;
+        }
+        tr
+        {
+            text-align: center;
+            border: 1px solid black;
+        }
+        th
+        {
+            text-align: center;
+            border: 1px solid black;
+        }
+        .alert-mass
+        {
+            color: red;
+        }
+            
+    </style>
+    <body>
+        <div class="reg-text">
+        <h1>Registration Form</h1>
+        <label>Name:</label>
+        <input type="text" id="fname" class="text-form">
+        <p id="username" class="alert-mass"></p>
+        <label>E-Mail:</label>
+        <input type="text" id="email" class="text-form">
+        <p id="useremail" class="alert-mass"></p>
+        <label>Roll No:</label>
+        <input type="number" id="number" class="text-form">
+        <p id="usernumber" class="alert-mass"></p>
+        <label>Address:</label>
+        <input type="text" id="address" class="text-form">
+        <p id="useraddress" class="alert-mass"></p>
+        <label>Phone No:</label>
+        <input type="number" id="phone" class="text-form">
+        <p id="userphone" class="alert-mass"></p>
+        <button onclick="return validation()">Submit</button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>E-Mail</th>
+                    <th>Roll NO</th>
+                    <th>Address</th>
+                    <th>Phone NO</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <script>
+            var row = 1;
+            function validation(){
+                var fname = document.getElementById("fname").value;
+                if(fname ==""){
+                    document.getElementById("username").innerHTML = "Enter user name"
+                    return;
+                }
+                var email = document.getElementById("email").value;
+                if(email ==""){
+                    document.getElementById("useremail").innerHTML = "Enter email address"
+                    return;
+                }
+                var number = document.getElementById("number").value;
+                if(number ==""){
+                    document.getElementById("usernumber").innerHTML = "Enter your own rollno"
+                    return;
+                }
+                var address = document.getElementById("address").value;
+                if(address == ""){
+                    document.getElementById("useraddress").innerHTML = "Enter Home Address"
+                    return;
+                }
+                var phone = document.getElementById("phone").value;
+                if(phone == ""){
+                    document.getElementById("userphone").innerHTML = "Enter Your Phone No"
+                    return;
+                }
+                var table = document.getElementsByTagName("table")[0];
+                var newRow = table.insertRow(row);
+                var cel1 = newRow.insertCell(0);
+                var cel2 = newRow.insertCell(1);
+                var cel3 = newRow.insertCell(2);
+                var cel4 = newRow.insertCell(3);
+                var cel5 = newRow.insertCell(4);
+                cel1.innerHTML = fname;
+                cel2.innerHTML = email;
+                cel3.innerHTML = number;
+                cel4.innerHTML = address;
+                cel5.innerHTML = phone;
+            }
+
+        </script>
+    </body>
+</html>

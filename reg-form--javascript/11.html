@@ -1,0 +1,130 @@
+
+<html>
+    <head>
+        <title>form</title>
+    </head>
+    <style>
+        .text-form
+        {    width: 240px;
+            height: 41px;
+            border-radius: 5px;
+            font-family: ui-monospace;
+            font-size: 15px;
+            text-transform: capitalize;
+            margin: 34px;
+            margin-bottom: -29px;
+        }
+        h1
+        {
+            font-size: 70px;
+            margin: 30px auto;
+            margin-bottom: 2px;
+        }
+        .button
+        {
+            width: 93px;
+            border-radius: 7px;
+            font-size: 19px;
+            margin-left: -271px;
+            margin-top: 40px;
+        }
+        table , tr , th
+        {
+            height: 43px;
+            width: 690px;
+            border: 1px solid black;
+            text-align: center;
+            border-collapse: collapse;
+            margin: 100px auto;
+            text-transform: capitalize;
+            
+        }
+        tr
+        {
+            font-size: 20px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-weight: 200;        
+            text-transform: capitalize; 
+            border: 1px solid black;
+            border-collapse: collapse;  
+        }
+        th
+        {
+            font-size: 20px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-weight: 200;
+            text-transform: capitalize;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        .text-alert
+        {
+            color: red;
+        }
+
+    </style>
+    
+    <body>
+        <div style="text-align: center;">
+            
+                <h1>Studernt Form</h1>
+                <div class="group-form">
+                    <label>Name:</label>
+                    <input type="text" name="fname" id="fname" class="text-form">
+                    <p id="username" class="text-alert"></p>
+                </div>
+                <div class="group-form">
+                    <label>E-Mail:</label>
+                    <input type="text" name="email" id="email" class="text-form">
+                    <p id="useremail" class="text-alert"></p>
+                </div>
+                <div class="group-form">
+                    <label>Number:</label>
+                    <input type="number" name="number" id="number" class="text-form">
+                    <p id="usernumber" class="text-alert"></p>
+                </div>
+
+                <button  onclick="return validation()" class="button">Submit</button>
+            
+            
+        </div>
+            <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>E-mail</th>
+                    <th>Number</th>
+                 </tr>
+            </thead>
+        </table>
+        <script>
+            var row =1;
+            function validation()
+            {  
+                var fname = document.getElementById('fname').value;
+                if(fname == ""){
+                    document.getElementById('username').innerHTML = "Enter correct name";
+                    return;
+                }                
+                var email = document.getElementById('email').value;
+                if(email == ""){
+                    document.getElementById('useremail').innerHTML = "@ Must be use";
+                    return;
+                }
+                var number = document.getElementById('number').value;
+                if(number == ""){
+                    document.getElementById('usernumber').innerHTML = "Enter the full number";
+                    return;
+                }
+                var table = document.getElementsByTagName('table')[0];
+                var newRow = table.insertRow(row);
+                var cel1 = newRow.insertCell(0);
+                var cel2 = newRow.insertCell(1);
+                var cel3 = newRow.insertCell(2);
+                cel1.innerHTML = fname;
+                cel2.innerHTML = email;
+                cel3.innerHTML = number;
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>Document</title>
+    </head>
+    <body>
+        <div>
+            <label>Name:</label>
+            <input type="text" id="fname" class="text-form">
+            <p id="username"></p>
+            <label>E-Mail:</label>
+            <input type="text" id="email" class="text-form">
+            <p id="useremail"></p>
+            <label>Roll No:</label>
+            <input type="number" id="number" class="text-form">
+            <p id="usernumber"></p>
+            <button onclick="return validation()">Submit</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>E-Mail</th>
+                        <th>Roll NO</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <script>
+            var row = 1;
+            function validation(){
+                var fname = document.getElementById("fname").value;
+                if(fname ==""){
+                    document.getElementById("username").innerHTML = "Enter user name"
+                    return;
+                }
+                var email = document.getElementById("email").value;
+                if(email ==""){
+                    document.getElementById("useremail").innerHTML = "Enter email address"
+                    return;
+                }
+                var number = document.getElementById("number").value;
+                if(number ==""){
+                    document.getElementById("usernumber").innerHTML = "Enter your own rollno"
+                    return;
+                }
+                var table = document.getElementsByTagName("table")[0];
+                var newRow = table.insertRow(row);
+                var cel1 = newRow.insertCell(0);
+                var cel2 = newRow.insertCell(1);
+                var cel3 = newRow.insertCell(2);
+                cel1.innerHTML = fname;
+                cel2.innerHTML = email;
+                cel3.innerHTML = number;
+            }
+
+        </script>
+    </body>
+</html>

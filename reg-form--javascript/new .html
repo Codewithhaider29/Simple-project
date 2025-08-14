@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <title>form</title>
+    </head>
+    <style>
+        .reg-form
+        {
+            height: 320px;
+            width: 360px;
+            border: 2px solid black;
+            text-align: center;
+            margin: 50px auto;
+            text-transform: capitalize;
+        }
+        .reg-text
+        {   
+            font-size: 41px;
+            margin-top: 13px;
+            height: 10px;
+            font-family: ui-monospace;
+            text-transform: capitalize;
+        }
+        .form-text
+        {    width: 240px;
+            height: 41px;
+            border-radius: 5px;
+            font-family: ui-monospace;
+            font-size: 15px;
+            text-transform: capitalize;
+            margin: 34px;
+            margin-bottom: -29px;
+        }
+        .button
+        {
+            height: 34px;
+            width: 115px;
+            border-radius: 7px;
+            font-family: ui-monospace;
+            font-size: 22px;
+            margin: 26px;
+        }
+        table , tr , th
+        {
+            height: 43px;
+            width: 690px;
+            border: 1px solid black;
+            text-align: center;
+            border-collapse: collapse;
+            margin: 100px auto;
+            text-transform: capitalize;
+            
+        }
+        tr
+        {
+            font-size: 20px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-weight: 200;        
+            text-transform: capitalize; 
+            border: 1px solid black;
+            border-collapse: collapse;  
+        }
+        th
+        {
+            font-size: 20px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-weight: 200;
+            text-transform: capitalize;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+    </style>
+    
+    <body>
+        <div class="reg-form">
+            <h1 class="reg-text">Registation form</h1>
+            <input type="text" name="fname" id="fname" placeholder="name" class="form-text">
+<br><br>
+            <input type="text" name="email" id="email" placeholder="e-mail" class="form-text">
+<br><br>            
+            <input type="number" name="number" id="number" placeholder="roll-no" class="form-text">
+<br><br>            
+            <button onclick="addRow()" class="button" id="add">Submit</button>
+        </div>
+          
+        
+        <table style="border: 1px solid black; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>E-mail</th>
+                    <th>Roll No</th>
+                 </tr>
+            </thead>
+        </table>
+        <script>
+            var row =1;
+            function addRow()
+            {  
+                var fname = document.getElementById('fname').value;                
+                var email = document.getElementById('email').value;
+                var number = document.getElementById('number').value;
+                var table = document.getElementsByTagName('table')[0];
+                var newRow = table.insertRow(row);
+                var cel1 = newRow.insertCell(0);
+                var cel2 = newRow.insertCell(1);
+                var cel3 = newRow.insertCell(2);
+                cel1.innerHTML = fname;
+                cel2.innerHTML = email;
+                cel3.innerHTML = number;
+            }
+        </script>
+    </body>
+</html>

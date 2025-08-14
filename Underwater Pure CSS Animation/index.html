@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="whaleContainer">
+            <!-- Loop for 4 whales -->
+            <div class="whalePos size1">
+                <div class="whaleRotate size1">
+                    <div class="whale"></div>
+                    <div class="fin"></div>
+                </div>
+            </div>
+            <div class="whalePos size2">
+                <div class="whaleRotate size2">
+                    <div class="whale"></div>
+                    <div class="fin"></div>
+                </div>
+            </div>
+            <div class="whalePos size3">
+                <div class="whaleRotate size3">
+                    <div class="whale"></div>
+                    <div class="fin"></div>
+                </div>
+            </div>
+            <div class="whalePos size4">
+                <div class="whaleRotate size4">
+                    <div class="whale"></div>
+                    <div class="fin"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cPos">
+            <div class="cc">
+                <div class="circle one"></div>
+                <div class="circle two"></div>
+                <div class="circle three"></div>
+                <div class="circle four"></div>
+            </div>
+        </div>
+
+        <div class="triangleContainer">
+            <div class="triangleBar"></div>
+            <!-- Loop for 20 triangles -->
+            <span class="triangle"></span>
+            <span class="triangle"></span>
+            <span class="triangle"></span>
+            <!-- Add as needed until the loop count reaches 20 -->
+        </div>
+
+        <div class="gradientContainer">
+            <div class="overlay one"></div>
+            <div class="gradient">
+                <!-- Loop for 39 rays -->
+                <span class="ray1"></span>
+                <span class="ray2"></span>
+                <span class="ray3"></span>
+                <!-- Add as needed until the loop count reaches 39 -->
+            </div>
+        </div>
+
+        <div class="rocks">
+            <div class="rock one"></div>
+            <div class="rock two"></div>
+            <div class="rock three"></div>
+            <div class="rock four"></div>
+        </div>
+
+        <div class="bubbleContainer">
+            <!-- Loop for 50 bubbles -->
+            <span class="bubbleY1">
+                <span class="bubbleX1"></span>
+            </span>
+            <span class="bubbleY2">
+                <span class="bubbleX2"></span>
+            </span>
+            <!-- Add more bubble spans as needed -->
+        </div>
+    </div>
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+    // Create whales
+    const whaleContainer = document.querySelector('.whaleContainer');
+    for (let x = 1; x <= 4; x++) {
+        const whalePos = document.createElement('div');
+        whalePos.classList.add('whalePos', 'size' + x);
+        const whaleRotate = document.createElement('div');
+        whaleRotate.classList.add('whaleRotate', 'size' + x);
+        const whale = document.createElement('div');
+        whale.classList.add('whale');
+        const fin = document.createElement('div');
+        fin.classList.add('fin');
+        whaleRotate.appendChild(whale);
+        whaleRotate.appendChild(fin);
+        whalePos.appendChild(whaleRotate);
+        whaleContainer.appendChild(whalePos);
+    }
+
+    // Create triangles
+    const triangleContainer = document.querySelector('.triangleContainer');
+    for (let x = 1; x < 20; x++) {
+        const triangle = document.createElement('span');
+        triangle.classList.add('triangle');
+        triangleContainer.appendChild(triangle);
+    }
+
+    // Create rays
+    const gradient = document.querySelector('.gradient');
+    for (let x = 1; x < 39; x++) {
+        const ray = document.createElement('span');
+        ray.classList.add('ray' + x);
+        gradient.appendChild(ray);
+    }
+
+    // Create bubbles
+    const bubbleContainer = document.querySelector('.bubbleContainer');
+    for (let x = 1; x < 50; x++) {
+        const bubbleY = document.createElement('span');
+        bubbleY.classList.add('bubbleY' + x);
+        const bubbleX = document.createElement('span');
+        bubbleX.classList.add('bubbleX' + x);
+        bubbleY.appendChild(bubbleX);
+        bubbleContainer.appendChild(bubbleY);
+    }
+});
+
+	</script>
+</body>
+</html>
